@@ -1,7 +1,6 @@
 package Modele;
 
-import java.util.ArrayList;
-import java.util.List;
+ import Exception.ExceptionNoSuchPoint;
 
 /**
  * Created by Vladimir on 17/10/2015.
@@ -15,10 +14,18 @@ public class Graphe {
             points[i] = new Point();
         }
     }
-    public Point getPoint (int num) throws Exception{
+    public Point getPoint (int num) throws ExceptionNoSuchPoint{
         if(num < 0 || num >= points.length)
-            throw new Exception("No such point");
+            throw new ExceptionNoSuchPoint();
         return points[num];
+    }
+
+    public void addVoisin(int num, Point p) {
+        try {
+            getPoint(num).ajouterVoisin(p);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
