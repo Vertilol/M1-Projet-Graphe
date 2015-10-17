@@ -8,6 +8,12 @@ public class Test {
         String s = "7: [3, 4, 5, 6]";
         String s2 = s.split(":")[1].trim();
         String s3 = s2.substring(1, s2.length()-1);
+
         System.out.println(s3);
+
+        String[] test = s3.split(",");
+        for(String i : test){
+            System.out.println(Integer.parseInt(i.trim()));
+        }
     }
 }

@@ -18,7 +18,12 @@ public class Parseur {
                 if (cpt == -1) {
                     g = new Graphe(Integer.parseInt(line));
                 } else {
+                    String s2 = line.split(":")[1].trim();
+                    String s3 = s2.substring(1, s2.length()-1);
+                    String[] voisins = s3.split(",");
+                    for(int i = 0; i<voisins.length; i++){
 
+                    }
                 }
                 cpt++;
             }
