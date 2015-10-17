@@ -7,10 +7,14 @@ import java.util.List;
  * Created by Vladimir on 17/10/2015.
  */
 public class Point {
+    String nom;
     List<Point> voisins;
     ETAT etat;
     PLANARITE planarite;
 
+    public Point(String nom){
+        this.nom = nom;
+        voisins = new ArrayList<Point>();
     enum ETAT {NONATTEINT, VISITE, TRAITE}
     enum PLANARITE{ BLANC, BLEU}
 

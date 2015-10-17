@@ -11,7 +11,7 @@ public class Graphe {
     public Graphe(int taille){
         points = new Point[taille];
         for(int i = 0 ; i < taille ; i++){
-            points[i] = new Point();
+            points[i] = new Point(String.valueOf(i));
         }
     }
     public Point getPoint (int num) throws ExceptionNoSuchPoint{
@@ -26,6 +26,19 @@ public class Graphe {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String toString(){
+        String s = "";
+        for(Point p : points){
+            s += p.nom + " : ";
+            for(Point p2 : p.getVoisins()){
+                s+= p2.nom + ", ";
+            }
+            s = s.substring(0, s.length()-2);
+            s += "\n";
+        }
+        return s;
     }
 
     public void inialiserParcours(){
