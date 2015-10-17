@@ -11,6 +11,9 @@ public class Graphe {
 
     public Graphe(int taille){
         points = new Point[taille];
+        for(int i = 0 ; i < taille ; i++){
+            points[i] = new Point();
+        }
     }
     public Point getPoint (int num) throws Exception{
         if(num < 0 || num >= points.length)
