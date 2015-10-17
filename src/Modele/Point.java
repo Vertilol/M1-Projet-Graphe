@@ -12,15 +12,16 @@ public class Point {
     ETAT etat;
     PLANARITE planarite;
 
-    public Point(String nom){
-        this.nom = nom;
-        voisins = new ArrayList<Point>();
     enum ETAT {NONATTEINT, VISITE, TRAITE}
     enum PLANARITE{ BLANC, BLEU}
 
+    public Point(String nom) {
+        this.nom = nom;
+        voisins = new ArrayList<Point>();
+    }
 
     public Point(){
-        voisins = new ArrayList<>();
+        voisins = new ArrayList<Point>();
         etat = ETAT.NONATTEINT;
         planarite = PLANARITE.BLANC;
     }
