@@ -28,4 +28,10 @@ public class Graphe {
         }
     }
 
+    public void inialiserParcours(){
+        for(Point p : points){
+            p.setEtatParcoursNonAtteint();
+        }
+    }
+
 }

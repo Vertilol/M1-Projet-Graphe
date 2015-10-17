@@ -8,10 +8,17 @@ import java.util.List;
  */
 public class Point {
     List<Point> voisins;
+    ETAT etat;
+    PLANARITE planarite;
+
+    enum ETAT {NONATTEINT, VISITE, TRAITE}
+    enum PLANARITE{ BLANC, BLEU}
+
 
     public Point(){
-        voisins = new ArrayList<Point>();
-
+        voisins = new ArrayList<>();
+        etat = ETAT.NONATTEINT;
+        planarite = PLANARITE.BLANC;
     }
 
     public void ajouterVoisin(Point p){
@@ -21,5 +28,9 @@ public class Point {
 
     public List<Point> getVoisins() {
         return voisins;
+    }
+
+    public void setEtatParcoursNonAtteint(){
+        this.etat = ETAT.NONATTEINT;
     }
 }
