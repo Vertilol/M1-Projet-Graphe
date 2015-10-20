@@ -28,6 +28,7 @@ public class Graphe {
         }
     }
 
+
     public String toString(){
         String s = "";
         for(Point p : points){
@@ -44,7 +45,10 @@ public class Graphe {
     public void inialiserParcours(){
         for(Point p : points){
             p.setEtatParcoursNonAtteint();
+            p.setParent(null);
         }
     }
+
+    public int getTaille(){return points.length;}
 
 }
