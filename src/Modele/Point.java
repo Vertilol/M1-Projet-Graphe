@@ -39,7 +39,7 @@ public class Point {
 
 
     public List<Point> remonterParent(){
-        List<Point> liste = new ArrayList<>();
+        List<Point> liste = new ArrayList<Point>();
         liste.add(this);
         Point p = this.parent;
         while(p != null){
@@ -51,7 +51,7 @@ public class Point {
 
     //retourne le premier cycle trouve en remontant les parents
     public List<Point> remonterCycle(Point pointCycle){
-        List<Point> liste = new ArrayList<>();
+        List<Point> liste = new ArrayList<Point>();
         liste.add(pointCycle);
         liste.add(this);
         liste.add(this.parent);
@@ -65,8 +65,8 @@ public class Point {
 
     //retourne tout les cycles trouve en remontant les parents
     public List<List<Point>> remonterCycles(Point pointCycle){
-        List<List<Point>> listeCycle = new ArrayList<>();
-        List<Point> liste = new ArrayList<>();
+        List<List<Point>> listeCycle = new ArrayList<List<Point>>();
+        List<Point> liste = new ArrayList<Point>();
         liste.add(pointCycle);
         liste.add(this);
         //liste.add(this.parent);

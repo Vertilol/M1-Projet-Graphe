@@ -56,7 +56,7 @@ public class Cycle {
     //version qui cherche tout les cycles
     public static List<List<Point>> chercherCycles(Graphe graphe) throws Exception {
         int source = 0;
-        List<List<Point>> cycleListe = new ArrayList<>();
+        List<List<Point>> cycleListe = new ArrayList<List<Point>>();
         for(source = 0 ; source < graphe.getTaille() ; source++) {
             List<Point> cycle = null;
             Stack<Point> pile = new Stack<Point>();
