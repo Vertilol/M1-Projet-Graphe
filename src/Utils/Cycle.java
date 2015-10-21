@@ -19,7 +19,7 @@ public class Cycle {
         int source = 0;
         for(source = 0 ; source < graphe.getTaille() ; source++) {
             List<Point> cycle = null;
-            Stack<Point> pile = new Stack<>();
+            Stack<Point> pile = new Stack<Point>();
             Point pointCourant = null;
             Point pointVisite = null;
 
@@ -59,7 +59,7 @@ public class Cycle {
         List<List<Point>> cycleListe = new ArrayList<>();
         for(source = 0 ; source < graphe.getTaille() ; source++) {
             List<Point> cycle = null;
-            Stack<Point> pile = new Stack<>();
+            Stack<Point> pile = new Stack<Point>();
             Point pointCourant = null;
             Point pointVisite = null;
 
