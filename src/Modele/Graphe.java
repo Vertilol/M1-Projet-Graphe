@@ -168,15 +168,15 @@ public class Graphe {
         }
 
         //on ajoute aux fragment, les points qui les lie avec le cycle
-        Iterator<ArrayList<Point>> it = fragments.iterator();
-        for(it.hasNext()) {
-            ArrayList<Point> array = it.next();
+        for(ArrayList<Point> array : fragments) {
             for (Point p : gOld.points) {
                 if (p.planariteBleu()) {
                     for (Point p2 : p.voisins) {
-                        if (array.contains(p2)){
-                            if(! array.contains(p)){
-                                array.add(p);
+                        if(! p2.planariteBleu()) {
+                            if (array.contains(p2)) {
+                                if (!array.contains(p)) {
+                                    array.add(p);
+                                }
                             }
                         }
                     }
