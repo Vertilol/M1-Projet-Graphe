@@ -59,7 +59,7 @@ public class Graphe {
         this.faces.add(f);
     }
 
-    //retourne liste des points étant placé dans une face
+    //retourne liste des points Ã©tant placÃ© dans une face
     public List<Point> getPointsInFace(){
         List<Point> lp = new ArrayList<Point>();
         for(Face f : this.faces){
@@ -72,7 +72,7 @@ public class Graphe {
         return lp;
     }
 
-    //retourne liste de points n'étant pas dans une face et ayant un de leur voisins dans une face
+    //retourne liste de points n'Ã©tant pas dans une face et ayant un de leur voisins dans une  face
     public List<Point> getNonDegeneratedPoints(){
         List<Point> lp = new ArrayList<Point>();
         List<Point> pointFace = getPointsInFace();
