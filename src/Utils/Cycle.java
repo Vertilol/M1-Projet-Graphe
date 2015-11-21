@@ -57,7 +57,7 @@ public class Cycle {
         Point[] newPoint = new Point[listPoint.size()];
         int cpt = 0;
         Point pOld = null;
-        for(Point p : listPoint){
+        for (Point p : listPoint) {
             newPoint[cpt] = new Point(p.getNom());
             cpt++;
         }
@@ -65,21 +65,13 @@ public class Cycle {
         cpt = Integer.parseInt(listPoint.get(0).getNom());
         int first = cpt;
         int last = Integer.parseInt(listPoint.get(listPoint.size() - 1).getNom());
-        System.out.println(last);
-        System.out.println(first);
         g.setPoints(newPoint);
         for (Point p : listPoint) {
             cpt = Integer.parseInt(p.getNom());
-            System.out.println("cpt : "+cpt);
-
-            if (cpt == first) {
-                System.out.println("First");
-            } else if (cpt == last) {
-                System.out.println("Last : " + first + " " + p.getNom());
-                g.addVoisin(first, p);
-            } else {
-                System.out.println("Add : " + cpt + " " + pOld.getNom());
-                g.addVoisin(cpt, pOld);
+            if (cpt == last) {
+                g.addVoisin(first, g.getPoint(cpt));
+            } else if (cpt != first) {
+                g.addVoisin(cpt, g.getPoint(Integer.parseInt(pOld.getNom())));
             }
             pOld = p;
         }

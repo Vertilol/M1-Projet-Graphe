@@ -20,6 +20,7 @@ public class Graphe {
         }
         faces = new ArrayList<Face>();
     }
+
     public Graphe(){
         faces = new ArrayList<Face>();
     }
