@@ -13,13 +13,13 @@ public class Graphe {
     private Point[] points;
     private List<Face> faces;
 
-    public Graphe(int taille){
+    public Graphe(int taille) {
         points = new Point[taille];
-        for(int i = 0 ; i < taille ; i++){
+        for (int i = 0; i < taille; i++) {
             points[i] = new Point(String.valueOf(i));
         }
         faces = new ArrayList<Face>();
-        
+    }
     public Graphe(){
         faces = new ArrayList<Face>();
     }
