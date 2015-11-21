@@ -40,6 +40,7 @@ public class Graphe {
         }
         return p;
     }
+
     public Point getPoint(String num){
         try{
             int nb = Integer.parseInt(num);

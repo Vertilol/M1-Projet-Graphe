@@ -86,19 +86,20 @@ public class Point {
         return nom;
     }
 
-    public boolean estVisite(){return (this.etat == ETAT.VISITE);};
-    public boolean estNonAtteint(){return (this.etat == ETAT.NONATTEINT);};
-    public boolean estTraite(){return (this.etat == ETAT.TRAITE);};
+    public boolean estVisite(){return (this.etat == ETAT.VISITE);}
+    public boolean estNonAtteint(){return (this.etat == ETAT.NONATTEINT);}
+    public boolean estTraite(){return (this.etat == ETAT.TRAITE);}
 
 
     public Point getParent() {return parent;}
     public void setParent(Point parent) {this.parent = parent;}
     public List<Point> getVoisins() {return voisins;}
     public void setEtatParcoursNonAtteint(){ this.etat = ETAT.NONATTEINT;}
-    public void setEtatParcoursVisite() { this.etat = ETAT.VISITE;};
+    public void setEtatParcoursVisite() { this.etat = ETAT.VISITE;}
     public void setEtatParcoursTraite(){ this.etat = ETAT.TRAITE;}
     public String getNom() {return nom;}
     public void setNom(String nom){this.nom = nom;}
+    public void setPlanariteBleu() {this.planarite = PLANARITE.BLEU;}
 
     public ETAT getEtat() {return etat;}
 

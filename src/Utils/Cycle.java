@@ -52,13 +52,14 @@ public class Cycle {
     }
 
     public static Graphe construireNouveauGraphe(Graphe graphe) throws Exception {
-        List<Point> listPoint = chercherCycles(graphe).get(2);
+        List<Point> listPoint = chercherCycle(graphe);
         Graphe g = new Graphe(listPoint.size());
         Point[] newPoint = new Point[listPoint.size()];
         int cpt = 0;
         Point pOld = null;
         for (Point p : listPoint) {
             newPoint[cpt] = new Point(p.getNom());
+            p.setPlanariteBleu();
             cpt++;
         }
 
