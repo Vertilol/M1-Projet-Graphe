@@ -13,10 +13,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         //Graphe g = Utils.Parseur.lectureFichierGraphe(args[0]);
-        testClone();
-        Graphe g = Utils.Parseur.lectureFichierGraphe("Exemples/exempleFaux.graphe");
+        //testClone();
+        Graphe g = Utils.Parseur.lectureFichierGraphe("Exemples/exemple.graphe");
         System.out.println(g);
         try {
+            System.out.println("Cycle "+Cycle.chercherCycle(g));
+            Graphe g2 = Cycle.construireNouveauGraphe(g);
+            System.out.println("Graphe :");
+            System.out.println(g2);
             System.out.println(Cycle.chercherCycles(g));
             System.out.println("Voici les fragments");
             System.out.println();

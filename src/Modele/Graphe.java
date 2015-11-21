@@ -19,12 +19,36 @@ public class Graphe {
             points[i] = new Point(String.valueOf(i));
         }
         faces = new ArrayList<Face>();
-
+        
+    public Graphe(){
+        faces = new ArrayList<Face>();
     }
+
+    public void setPoints(Point[] points){
+        this.points = points;
+    }
+
     public Point getPoint (int num) throws ExceptionNoSuchPoint{
-        if(num < 0 || num >= points.length)
+        if(!containsPoint(num))
             throw new ExceptionNoSuchPoint();
-        return points[num];
+        Point p = null;
+        for(int i = 0; i<points.length;i++){
+            if(Integer.parseInt(points[i].getNom()) == num){
+                p = points[i];
+            }
+        }
+        return p;
+    }
+
+
+    private boolean containsPoint(int num){
+        boolean test = false;
+        for(Point p : points){
+            if(Integer.parseInt(p.getNom()) == num){
+                test = true;
+            }
+        }
+        return test;
     }
 
     public void addVoisin(int num, Point p) {
