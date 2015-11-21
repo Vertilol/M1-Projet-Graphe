@@ -52,7 +52,7 @@ public class Cycle {
     }
 
     public static Graphe construireNouveauGraphe(Graphe graphe) throws Exception {
-        List<Point> listPoint = chercherCycle(graphe);
+        List<Point> listPoint = chercherCycles(graphe).get(2);
         Graphe g = new Graphe(listPoint.size());
         Point[] newPoint = new Point[listPoint.size()];
         int cpt = 0;
