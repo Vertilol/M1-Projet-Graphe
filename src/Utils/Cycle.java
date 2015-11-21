@@ -17,7 +17,7 @@ public class Cycle {
     //version qui cherche un seul cycle
     public static List<Point> chercherCycle(Graphe graphe) throws Exception {
         int source = 0;
-        for(source = 0 ; source < graphe.getTaille() ; source++) {
+        for (source = 0; source < graphe.getTaille(); source++) {
             List<Point> cycle = null;
             Stack<Point> pile = new Stack<Point>();
             Point pointCourant = null;
@@ -48,16 +48,49 @@ public class Cycle {
                 pointCourant.setEtatParcoursTraite();
             }
         }
-
-
         return null;
+    }
+
+    public static Graphe construireNouveauGraphe(Graphe graphe) throws Exception {
+        List<Point> listPoint = chercherCycle(graphe);
+        Graphe g = new Graphe(listPoint.size());
+        Point[] newPoint = new Point[listPoint.size()];
+        int cpt = 0;
+        Point pOld = null;
+        for(Point p : listPoint){
+            newPoint[cpt] = new Point(p.getNom());
+            cpt++;
+        }
+
+        cpt = Integer.parseInt(listPoint.get(0).getNom());
+        int first = cpt;
+        int last = Integer.parseInt(listPoint.get(listPoint.size() - 1).getNom());
+        System.out.println(last);
+        System.out.println(first);
+        g.setPoints(newPoint);
+        for (Point p : listPoint) {
+            cpt = Integer.parseInt(p.getNom());
+            System.out.println("cpt : "+cpt);
+
+            if (cpt == first) {
+                System.out.println("First");
+            } else if (cpt == last) {
+                System.out.println("Last : " + first + " " + p.getNom());
+                g.addVoisin(first, p);
+            } else {
+                System.out.println("Add : " + cpt + " " + pOld.getNom());
+                g.addVoisin(cpt, pOld);
+            }
+            pOld = p;
+        }
+        return g;
     }
 
     //version qui cherche tout les cycles
     public static List<List<Point>> chercherCycles(Graphe graphe) throws Exception {
         int source = 0;
         List<List<Point>> cycleListe = new ArrayList<List<Point>>();
-        for(source = 0 ; source < graphe.getTaille() ; source++) {
+        for (source = 0; source < graphe.getTaille(); source++) {
             List<Point> cycle = null;
             Stack<Point> pile = new Stack<Point>();
             Point pointCourant = null;
@@ -85,7 +118,7 @@ public class Cycle {
                         //on recupere le cycle que l'on vient de trouver
                         List<List<Point>> nouvelleListeCycle = pointCourant.remonterCycles(pointVisite);
                         Iterator<List<Point>> it2 = nouvelleListeCycle.iterator();
-                        while(it2.hasNext()){
+                        while (it2.hasNext()) {
                             cycle = it2.next();
                             if (cycleDejaPresent(cycleListe, cycle)) {
                                 cycleListe.add(cycle);
@@ -102,22 +135,23 @@ public class Cycle {
         return cycleListe;
     }
 
-    private static boolean cycleDejaPresent(List<List<Point>> listeCycle, List<Point> cycle){
+    private static boolean cycleDejaPresent(List<List<Point>> listeCycle, List<Point> cycle) {
         Iterator<List<Point>> it = listeCycle.iterator();
-        while(it.hasNext()){
-            if(cycleEqualsCycle(it.next(),cycle)){
+        while (it.hasNext()) {
+            if (cycleEqualsCycle(it.next(), cycle)) {
                 return false;
             }
         }
         return true;
     }
-    private static boolean cycleEqualsCycle(List<Point> liste1, List<Point> liste2){
+
+    private static boolean cycleEqualsCycle(List<Point> liste1, List<Point> liste2) {
         Iterator<Point> it = liste1.iterator();
-        if(liste1.size() != liste2.size())
+        if (liste1.size() != liste2.size())
             return false;
-        while(it.hasNext()){
+        while (it.hasNext()) {
             Point p = it.next();
-            if(!liste2.contains(p)){
+            if (!liste2.contains(p)) {
                 return false;
             }
         }

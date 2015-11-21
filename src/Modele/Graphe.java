@@ -18,12 +18,37 @@ public class Graphe {
             points[i] = new Point(String.valueOf(i));
         }
         faces = new ArrayList<Face>();
-
     }
+
+    public Graphe(){
+        faces = new ArrayList<Face>();
+    }
+
+    public void setPoints(Point[] points){
+        this.points = points;
+    }
+
     public Point getPoint (int num) throws ExceptionNoSuchPoint{
-        if(num < 0 || num >= points.length)
+        if(!containsPoint(num))
             throw new ExceptionNoSuchPoint();
-        return points[num];
+        Point p = null;
+        for(int i = 0; i<points.length;i++){
+            if(Integer.parseInt(points[i].getNom()) == num){
+                p = points[i];
+            }
+        }
+        return p;
+    }
+
+
+    private boolean containsPoint(int num){
+        boolean test = false;
+        for(Point p : points){
+            if(Integer.parseInt(p.getNom()) == num){
+                test = true;
+            }
+        }
+        return test;
     }
 
     public void addVoisin(int num, Point p) {
@@ -59,7 +84,7 @@ public class Graphe {
         this.faces.add(f);
     }
 
-    //retourne liste des points étant placé dans une face
+    //retourne liste des points ï¿½tant placï¿½ dans une face
     public List<Point> getPointsInFace(){
         List<Point> lp = new ArrayList<Point>();
         for(Face f : this.faces){
@@ -72,7 +97,7 @@ public class Graphe {
         return lp;
     }
 
-    //retourne liste de points n'étant pas dans une face et ayant un de leur voisins dans une face
+    //retourne liste de points n'ï¿½tant pas dans une face et ayant un de leur voisins dans une face
     public List<Point> getNonDegeneratedPoints(){
         List<Point> lp = new ArrayList<Point>();
         List<Point> pointFace = getPointsInFace();
