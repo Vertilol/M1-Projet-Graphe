@@ -18,6 +18,8 @@ public class Main {
         System.out.println(g);
         try {
             System.out.println(Cycle.chercherCycles(g));
+            System.out.println("Voici les fragments");
+            System.out.println();
             //System.out.println(Cycle.chercherCycle(g));
         } catch (Exception e){
             System.out.println("Pas de cycle lel");

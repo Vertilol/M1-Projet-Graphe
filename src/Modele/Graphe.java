@@ -4,6 +4,7 @@ package Modele;
 
  import java.util.ArrayList;
  import java.util.List;
+ import java.util.Stack;
 
 /**
  * Created by Vladimir on 17/10/2015.
@@ -93,5 +94,49 @@ public class Graphe {
     }
 
     public int getTaille(){return points.length;}
+
+
+
+    public List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew){
+        //on recupere les points du grapheOld qui ne sont pas dans gNew
+        List<Point> listePoints = new ArrayList<Point>();
+        for(Point p : gOld.points){
+            if(! gNew.containsPoint(p)){
+                listePoints.add(p);
+            }
+        }
+
+
+        //on reforme les fragments
+        List<ArrayList<Point>> fragments = new ArrayList<ArrayList<Point>>();
+        while(listePoints.size() != 0){
+            List<Point> fragment = new ArrayList<Point>();
+            Stack<Point> pile = new Stack<Point>();
+            Point p = listePoints.get(0);
+            listePoints.remove(0);
+            pile.push(p);
+            while(pile.size() != 0){
+                Point current = pile.pop();
+                for(Point voisin : current.voisins){
+                    if(listePoints.contains(voisin)){
+                        fragment.add(voisin);
+                        pile.push(voisin);
+                        listePoints.remove(voisin);
+                    }
+                }
+            }
+        }
+        return fragments;
+    }
+
+
+
+    public boolean containsPoint(Point p){
+        for(Point p2 : this.points){
+            if(p2.equals(p))
+                return true;
+        }
+        return false;
+    }
 
 }
