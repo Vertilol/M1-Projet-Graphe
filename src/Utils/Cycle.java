@@ -70,6 +70,7 @@ public class Cycle {
             cpt = Integer.parseInt(p.getNom());
             if (cpt == last) {
                 g.addVoisin(first, g.getPoint(cpt));
+                g.addVoisin(cpt, g.getPoint(Integer.parseInt(pOld.getNom())));
             } else if (cpt != first) {
                 g.addVoisin(cpt, g.getPoint(Integer.parseInt(pOld.getNom())));
             }
