@@ -1,10 +1,11 @@
 package Modele;
 
- import Exception.ExceptionNoSuchPoint;
+import Exception.ExceptionNoSuchPoint;
 
- import java.util.ArrayList;
- import java.util.List;
- import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Vladimir on 17/10/2015.
@@ -165,6 +166,24 @@ public class Graphe {
             fragments.add((ArrayList<Point>)fragment);
 
         }
+
+        //on ajoute aux fragment, les points qui les lie avec le cycle
+        Iterator<ArrayList<Point>> it = fragments.iterator();
+        for(it.hasNext()) {
+            ArrayList<Point> array = it.next();
+            for (Point p : gOld.points) {
+                if (p.planariteBleu()) {
+                    for (Point p2 : p.voisins) {
+                        if (array.contains(p2)){
+                            if(! array.contains(p)){
+                                array.add(p);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return fragments;
     }
 

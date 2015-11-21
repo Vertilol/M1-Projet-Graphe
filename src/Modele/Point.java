@@ -100,6 +100,15 @@ public class Point {
     public String getNom() {return nom;}
     public void setNom(String nom){this.nom = nom;}
     public void setPlanariteBleu() {this.planarite = PLANARITE.BLEU;}
+    public boolean planariteBleu(){return this.planarite==PLANARITE.BLEU;}
+    public boolean planariteBlanc(){return this.planarite==PLANARITE.BLANC;}
+    public PLANARITE getPlanarite() {
+        return planarite;
+    }
+
+    public void setVoisins(List<Point> voisins) {
+        this.voisins = voisins;
+    }
 
     public ETAT getEtat() {return etat;}
 
