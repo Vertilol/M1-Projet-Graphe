@@ -101,4 +101,14 @@ public class Point {
     public void setNom(String nom){this.nom = nom;}
 
     public ETAT getEtat() {return etat;}
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Point)){
+            return false;
+        }
+        Point p = (Point) obj;
+        return p.getNom().equals(this.getNom());
+    }
 }

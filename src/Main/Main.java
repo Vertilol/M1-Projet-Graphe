@@ -19,11 +19,11 @@ public class Main {
         try {
             System.out.println("Cycle "+Cycle.chercherCycle(g));
             Graphe g2 = Cycle.construireNouveauGraphe(g);
-            System.out.println("Graphe :");
+            System.out.println("Graphe nouveau :");
             System.out.println(g2);
-            System.out.println(Cycle.chercherCycles(g));
+            //System.out.println(Cycle.chercherCycles(g));
             System.out.println("Voici les fragments");
-            System.out.println();
+            System.out.println(Graphe.getFragments(g,g2));
             //System.out.println(Cycle.chercherCycle(g));
         } catch (Exception e){
             System.out.println("Pas de cycle lel");

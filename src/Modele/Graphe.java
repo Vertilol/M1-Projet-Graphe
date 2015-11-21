@@ -40,6 +40,16 @@ public class Graphe {
         }
         return p;
     }
+    public Point getPoint(String num){
+        try{
+            int nb = Integer.parseInt(num);
+            return getPoint(nb);
+        }
+        catch(Exception e){
+            System.out.println("Exception no such point !!");
+        }
+        return null;
+    }
 
 
     private boolean containsPoint(int num){
@@ -122,12 +132,12 @@ public class Graphe {
 
 
 
-    public List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew){
+    public static List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew){
         //on recupere les points du grapheOld qui ne sont pas dans gNew
         List<Point> listePoints = new ArrayList<Point>();
         for(Point p : gOld.points){
             if(! gNew.containsPoint(p)){
-                listePoints.add(p);
+                listePoints.add(gOld.getPoint(p.getNom()));
             }
         }
 
@@ -140,6 +150,7 @@ public class Graphe {
             Point p = listePoints.get(0);
             listePoints.remove(0);
             pile.push(p);
+            fragment.add(p);
             while(pile.size() != 0){
                 Point current = pile.pop();
                 for(Point voisin : current.voisins){
@@ -150,6 +161,8 @@ public class Graphe {
                     }
                 }
             }
+            fragments.add((ArrayList<Point>)fragment);
+
         }
         return fragments;
     }
