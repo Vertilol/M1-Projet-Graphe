@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args){
         //Graphe g = Utils.Parseur.lectureFichierGraphe(args[0]);
         testClone();
-        Graphe g = Utils.Parseur.lectureFichierGraphe("Exemples/exemple5.graphe");
+        Graphe g = Utils.Parseur.lectureFichierGraphe("Exemples/exempleFaux.graphe");
         System.out.println(g);
         try {
             System.out.println(Cycle.chercherCycles(g));
