@@ -13,53 +13,61 @@ import java.util.Stack;
  * Created by Vladimir on 17/10/2015.
  */
 public class Graphe {
-    private Point[] points;
+    private List<Point> points;
     private List<Face> faces;
 
     public Graphe(int taille) {
-        points = new Point[taille];
+        points = new ArrayList<Point>();
         for (int i = 0; i < taille; i++) {
-            points[i] = new Point(String.valueOf(i));
+            points.add(new Point(String.valueOf(i)));
         }
         faces = new ArrayList<Face>();
     }
 
-    public Graphe(){
+    public Graphe() {
+        points = new ArrayList<Point>();
         faces = new ArrayList<Face>();
     }
 
-    public void setPoints(Point[] points){
-        this.points = points;
+    public void setPoints(Point[] points) {
+        for (Point p : points) {
+            this.points.add(p);
+        }
+
     }
 
-    public Point getPoint (int num) throws ExceptionNoSuchPoint{
-        if(!containsPoint(num))
+    public List<Face> getFaces(){
+        return faces;
+    }
+
+
+    public Point getPoint(int num) throws ExceptionNoSuchPoint {
+        if (!containsPoint(num))
             throw new ExceptionNoSuchPoint();
         Point p = null;
-        for(int i = 0; i<points.length;i++){
-            if(Integer.parseInt(points[i].getNom()) == num){
-                p = points[i];
+        for (int i = 0; i < points.size(); i++) {
+            if (Integer.parseInt(points.get(i).getNom()) == num) {
+                p = points.get(i);
             }
         }
         return p;
     }
 
-    public Point getPoint(String num){
-        try{
+    public Point getPoint(String num) {
+        try {
             int nb = Integer.parseInt(num);
             return getPoint(nb);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Exception no such point !!");
         }
         return null;
     }
 
 
-    private boolean containsPoint(int num){
+    private boolean containsPoint(int num) {
         boolean test = false;
-        for(Point p : points){
-            if(Integer.parseInt(p.getNom()) == num){
+        for (Point p : points) {
+            if (Integer.parseInt(p.getNom()) == num) {
                 test = true;
             }
         }
@@ -74,44 +82,44 @@ public class Graphe {
         }
     }
 
-    public List<Point> getPoints(){
-        ArrayList<Point> points = new ArrayList<Point>();
-        for(Point p : this.points){
-            points.add(p);
-        }
-        return points;
+    public List<Point> getPoints() {
+        return this.points;
     }
 
-    public String toString(){
+    public String toString() {
         String s = "";
-        for(Point p : points){
+        for (Point p : points) {
             s += p.nom + " : ";
-            for(Point p2 : p.getVoisins()){
-                s+= p2.nom + ", ";
+            for (Point p2 : p.getVoisins()) {
+                s += p2.nom + ", ";
             }
-            s = s.substring(0, s.length()-2);
+            s = s.substring(0, s.length() - 2);
             s += "\n";
         }
         return s;
     }
 
-    public void inialiserParcours(){
-        for(Point p : points){
+    public void inialiserParcours() {
+        for (Point p : points) {
             p.setEtatParcoursNonAtteint();
             p.setParent(null);
         }
     }
 
-    public void addFace(Face f){
+    public void addFace(Face f) {
         this.faces.add(f);
     }
 
+    public void addPoint(Point p) {
+        this.points.add(p);
+    }
+
     //retourne liste des points étant placé dans une face
-    public List<Point> getPointsInFace(){
+    public List<Point> getPointsInFace() {
         List<Point> lp = new ArrayList<Point>();
-        for(Face f : this.faces){
-            for(Point p : f.points){
-                if(!lp.contains(p)){
+        for (Face f : this.faces) {
+            for (Point p : f.points) {
+                if (!lp.contains(p)) {
                     lp.add(p);
                 }
             }
@@ -120,34 +128,35 @@ public class Graphe {
     }
 
     //retourne liste de points n'étant pas dans une face et ayant un de leur voisins dans une  face
-    public List<Point> getNonDegeneratedPoints(){
+    public List<Point> getNonDegeneratedPoints() {
         List<Point> lp = new ArrayList<Point>();
         List<Point> pointFace = getPointsInFace();
-        for(Point p : this.points){
-            if(! pointFace.contains(p)){
+        for (Point p : this.points) {
+            if (!pointFace.contains(p)) {
                 boolean hasNeighborInFace = false;
-                for(Point pTest : p.voisins){
-                    if(pointFace.contains(pTest)){
+                for (Point pTest : p.voisins) {
+                    if (pointFace.contains(pTest)) {
                         hasNeighborInFace = true;
                         break;
                     }
                 }
-                if(hasNeighborInFace)
+                if (hasNeighborInFace)
                     lp.add(p);
             }
         }
         return lp;
     }
 
-    public int getTaille(){return points.length;}
+    public int getTaille() {
+        return points.size();
+    }
 
 
-
-    public static List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew){
+    public static List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew) {
         //on recupere les points du grapheOld qui ne sont pas dans gNew
         List<Point> listePoints = new ArrayList<Point>();
-        for(Point p : gOld.points){
-            if(! gNew.containsPoint(p)){
+        for (Point p : gOld.points) {
+            if (!gNew.containsPoint(p)) {
                 listePoints.add(gOld.getPoint(p.getNom()));
             }
         }
@@ -155,33 +164,33 @@ public class Graphe {
 
         //on reforme les fragments
         List<ArrayList<Point>> fragments = new ArrayList<ArrayList<Point>>();
-        while(listePoints.size() != 0){
+        while (listePoints.size() != 0) {
             List<Point> fragment = new ArrayList<Point>();
             Stack<Point> pile = new Stack<Point>();
             Point p = listePoints.get(0);
             listePoints.remove(0);
             pile.push(p);
             fragment.add(p);
-            while(pile.size() != 0){
+            while (pile.size() != 0) {
                 Point current = pile.pop();
-                for(Point voisin : current.voisins){
-                    if(listePoints.contains(voisin)){
+                for (Point voisin : current.voisins) {
+                    if (listePoints.contains(voisin)) {
                         fragment.add(voisin);
                         pile.push(voisin);
                         listePoints.remove(voisin);
                     }
                 }
             }
-            fragments.add((ArrayList<Point>)fragment);
+            fragments.add((ArrayList<Point>) fragment);
 
         }
 
         //on ajoute aux fragment, les points qui les lie avec le cycle
-        for(ArrayList<Point> array : fragments) {
+        for (ArrayList<Point> array : fragments) {
             for (Point p : gOld.points) {
                 if (p.planariteBleu()) {
                     for (Point p2 : p.voisins) {
-                        if(! p2.planariteBleu()) {
+                        if (!p2.planariteBleu()) {
                             if (array.contains(p2)) {
                                 if (!array.contains(p)) {
                                     array.add(p);
@@ -197,28 +206,26 @@ public class Graphe {
     }
 
 
-
-    public boolean containsPoint(Point p){
-        for(Point p2 : this.points){
-            if(p2.equals(p))
+    public boolean containsPoint(Point p) {
+        for (Point p2 : this.points) {
+            if (p2.equals(p))
                 return true;
         }
         return false;
     }
 
 
-
     //cherche dans quelles faces on peut ajouter un fragment
-    public HashMap<List<Point>,List<Face>> placementFragment(List<ArrayList<Point>> fragments){
+    public HashMap<List<Point>, List<Face>> placementFragment(List<ArrayList<Point>> fragments) {
         //pour chaque face, on associe une liste de face dans lequel on peut mettre la face
-        HashMap<List<Point>,List<Face>> placementsPossible = new HashMap<List<Point>,List<Face>>();
+        HashMap<List<Point>, List<Face>> placementsPossible = new HashMap<List<Point>, List<Face>>();
         //List<ArrayList<Point>> listeFragment = getFragments(oldG,newG);
 
-        for(List<Point> fragment : fragments){
+        for (List<Point> fragment : fragments) {
             List<Face> listeFacesCompatible = new ArrayList<Face>();
 
-            for(Face face : faces){
-                if(face.faceCompatible(fragment)){
+            for (Face face : faces) {
+                if (face.faceCompatible(fragment)) {
                     listeFacesCompatible.add(face);
                 }
             }
@@ -227,6 +234,39 @@ public class Graphe {
         return placementsPossible;
     }
 
+    public boolean containsPointNom(Point p){
+        for(Point p2 : this.points){
+            if(p2.getNom().equals(p.getNom())){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void plongerChemin(List<Point> listPoint, Face face) throws Exception {
+        Point oldPoint = null;
+        for (Point p : listPoint) {
+            if(!containsPointNom(p)){
+                this.addPoint(new Point(p.getNom()));
+            }
+        }
+        int cpt = Integer.parseInt(listPoint.get(0).getNom());
+        int first = cpt;
+        int last = Integer.parseInt(listPoint.get(listPoint.size() - 1).getNom());
+        Point pOld = null;
+
+        for (Point p : listPoint) {
+            cpt = Integer.parseInt(p.getNom());
+            if (cpt != first) {
+                this.addVoisin(cpt, this.getPoint(Integer.parseInt(pOld.getNom())));
+            }
+            pOld = p;
+        }
+
+        this.faces.remove(face);
+        Face[] tabFace = face.couperFace(listPoint);
+        this.faces.add(tabFace[0]);
+        this.faces.add(tabFace[1]);
+    }
 
 }

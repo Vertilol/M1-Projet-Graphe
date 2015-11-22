@@ -81,6 +81,7 @@ public class Face {
         for(Point p : points){
             s+= p.getNom() + " , ";
         }
+        s = s.substring(0,s.length()-2);
         s+= "] ]";
         return s;
     }

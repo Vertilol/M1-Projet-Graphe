@@ -54,7 +54,7 @@ public class Cycle {
 
     public static Graphe construireNouveauGraphe(Graphe graphe) throws Exception {
         List<Point> listPoint = chercherCycle(graphe);
-        Graphe g = new Graphe(listPoint.size());
+        Graphe g = new Graphe();
         Point[] newPoint = new Point[listPoint.size()];
         int cpt = 0;
         Point pOld = null;
@@ -78,8 +78,16 @@ public class Cycle {
             }
             pOld = p;
         }
-        Face f1 = new Face(g.getPoints());
-        Face f2 = new Face(g.getPoints());
+        List<Point> list = new ArrayList<Point>();
+        for(Point p : g.getPoints()){
+            list.add(new Point(p.getNom()));
+        }
+        List<Point> list2 = new ArrayList<Point>();
+        for(Point p : g.getPoints()){
+            list2.add(new Point(p.getNom()));
+        }
+        Face f1 = new Face(list);
+        Face f2 = new Face(list2);
         g.addFace(f1);
         g.addFace(f2);
         return g;
