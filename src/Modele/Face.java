@@ -36,7 +36,16 @@ public class Face {
         points.add(p);
     }
 
-    public Face[] couperFace(Point p1, Point p2){
+    public Face[] couperFace(List<Point> coupure){
+        Point p1 = coupure.get(0);
+        Point p2 = coupure.get(coupure.size()-1);
+
+        List<Point> newCoupure = new ArrayList<Point>();
+
+        for(int i = 1; i < coupure.size() - 1; i++){
+            newCoupure.add(coupure.get(i));
+        }
+
         Face[] faces = new Face[2];
         boolean rencontre = false;
         Face f1, f2;
@@ -47,14 +56,20 @@ public class Face {
                 f1.addPoint(p);
                 if(p.getNom().equals(p1.getNom()) || p.getNom().equals(p2.getNom())){
                     rencontre = true;
+                    for(Point pC : newCoupure){
+                        f1.addPoint(pC);
+                        f2.addPoint(pC);
+                    }
+                    f2.addPoint(p);
                 }
             } else {
                 f2.addPoint(p);
                 if(p.getNom().equals(p1.getNom()) || p.getNom().equals(p2.getNom())){
-                    rencontre = true;
+                    rencontre = false;
                     f1.addPoint(p);
                 }
             }
+
         }
         faces[0] = f1;
         faces[1] = f2;
