@@ -2,6 +2,7 @@ package Modele;
 
 import Exception.ExceptionNoSuchPoint;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,7 +54,6 @@ public class Graphe {
         return null;
     }
 
-
     private boolean containsPoint(int num){
         boolean test = false;
         for(Point p : points){
@@ -72,6 +72,13 @@ public class Graphe {
         }
     }
 
+    public List<Point> getPoints(){
+        ArrayList<Point> points = new ArrayList<Point>();
+        for(Point p : this.points){
+            points.add(p);
+        }
+        return points;
+    }
 
     public String toString(){
         String s = "";

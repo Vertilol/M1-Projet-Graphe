@@ -1,5 +1,6 @@
 package Utils;
 
+import Modele.Face;
 import Modele.Graphe;
 import Modele.Point;
 
@@ -77,6 +78,10 @@ public class Cycle {
             }
             pOld = p;
         }
+        Face f1 = new Face(g.getPoints());
+        Face f2 = new Face(g.getPoints());
+        g.addFace(f1);
+        g.addFace(f2);
         return g;
     }
 
