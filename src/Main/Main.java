@@ -25,6 +25,10 @@ public class Main {
             System.out.println("Voici les fragments");
             System.out.println(Graphe.getFragments(g,g2));
             //System.out.println(Cycle.chercherCycle(g));
+            System.out.println();
+            System.out.println("Compatibilité des fragments :");
+            System.out.println(g2.placementFragment(Graphe.getFragments(g,g2)));
+
         } catch (Exception e){
             System.out.println("Pas de cycle lel");
         }

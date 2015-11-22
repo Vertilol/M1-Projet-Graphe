@@ -209,12 +209,12 @@ public class Graphe {
 
 
     //cherche dans quelles faces on peut ajouter un fragment
-    public HashMap<List<Point>,List<Face>> PlacementFragment(Graphe oldG, Graphe newG){
+    public HashMap<List<Point>,List<Face>> placementFragment(List<ArrayList<Point>> fragments){
         //pour chaque face, on associe une liste de face dans lequel on peut mettre la face
         HashMap<List<Point>,List<Face>> placementsPossible = new HashMap<List<Point>,List<Face>>();
-        List<ArrayList<Point>> listeFragment = getFragments(oldG,newG);
+        //List<ArrayList<Point>> listeFragment = getFragments(oldG,newG);
 
-        for(List<Point> fragment : listeFragment){
+        for(List<Point> fragment : fragments){
             List<Face> listeFacesCompatible = new ArrayList<Face>();
 
             for(Face face : faces){
