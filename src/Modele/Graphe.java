@@ -2,6 +2,7 @@ package Modele;
 
 import Exception.ExceptionNoSuchPoint;
 
+import java.util.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -53,6 +54,7 @@ public class Graphe {
         }
         return null;
     }
+
 
     private boolean containsPoint(int num){
         boolean test = false;
@@ -203,5 +205,28 @@ public class Graphe {
         }
         return false;
     }
+
+
+
+    //cherche dans quelles faces on peut ajouter un fragment
+    public HashMap<List<Point>,List<Face>> PlacementFragment(Graphe oldG, Graphe newG){
+        //pour chaque face, on associe une liste de face dans lequel on peut mettre la face
+        HashMap<List<Point>,List<Face>> placementsPossible = new HashMap<List<Point>,List<Face>>();
+        List<ArrayList<Point>> listeFragment = getFragments(oldG,newG);
+
+        for(List<Point> fragment : listeFragment){
+            List<Face> listeFacesCompatible = new ArrayList<Face>();
+
+            for(Face face : faces){
+                if(face.faceCompatible(fragment)){
+                    listeFacesCompatible.add(face);
+                }
+            }
+            placementsPossible.put(fragment, listeFacesCompatible);
+        }
+        return placementsPossible;
+    }
+
+
 
 }

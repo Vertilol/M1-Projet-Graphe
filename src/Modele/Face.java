@@ -11,6 +11,16 @@ public class Face {
     List<Point> points = new ArrayList<Point>();
     static int cpt = 1;
 
+    //renvoie vrai si on peut inclure le fragment dans la face
+    public boolean faceCompatible(List<Point> fragment){
+        for(Point p : fragment){
+            if(p.planariteBleu() && ! this.points.contains(p)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Face() {
         this.nom = "F"+cpt;
         cpt++;
