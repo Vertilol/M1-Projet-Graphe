@@ -37,7 +37,7 @@ public class Fragment {
         stack.push(source);
         while(stack.size() != 0){
             Point current = stack.pop();
-            for(Point voisin : current.getVoisins()){
+            for(Point voisin : current.getVoisins().keySet()){
                 if(voisin.estNonAtteint()) {
                     //on veut au moins 1 points qui n'a pas la planarité bleue
                     if(!(destination==voisin && current==source)) {
