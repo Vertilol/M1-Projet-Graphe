@@ -89,9 +89,9 @@ public class Graphe {
     public String toString() {
         String s = "";
         for (Point p : points) {
-            s += p.nom + " : ";
-            for (Point p2 : p.getVoisins()) {
-                s += p2.nom + ", ";
+            s += p.getNom() + " : ";
+            for (Point p2 : p.getVoisins().keySet()) {
+                s += p2.getNom() + ":"+ p.getVoisins().get(p2) + ", ";
             }
             s = s.substring(0, s.length() - 2);
             s += "\n";
@@ -134,7 +134,7 @@ public class Graphe {
         for (Point p : this.points) {
             if (!pointFace.contains(p)) {
                 boolean hasNeighborInFace = false;
-                for (Point pTest : p.voisins) {
+                for (Point pTest : p.getVoisins().keySet()) {
                     if (pointFace.contains(pTest)) {
                         hasNeighborInFace = true;
                         break;
@@ -173,7 +173,7 @@ public class Graphe {
             fragment.add(p);
             while (pile.size() != 0) {
                 Point current = pile.pop();
-                for (Point voisin : current.voisins) {
+                for (Point voisin : current.getVoisins().keySet()) {
                     if (listePoints.contains(voisin)) {
                         fragment.add(voisin);
                         pile.push(voisin);
@@ -189,7 +189,7 @@ public class Graphe {
         for (ArrayList<Point> array : fragments) {
             for (Point p : gOld.points) {
                 if (p.planariteBleu()) {
-                    for (Point p2 : p.voisins) {
+                    for (Point p2 : p.getVoisins().keySet()) {
                         if (!p2.planariteBleu()) {
                             if (array.contains(p2)) {
                                 if (!array.contains(p)) {
@@ -269,4 +269,8 @@ public class Graphe {
         this.faces.add(tabFace[1]);
     }
 
+    public void placementArrete(Point p1, Point p2){
+        p1.setVoisinTrue(p2);
+        p2.setVoisinTrue(p1);
+    }
 }

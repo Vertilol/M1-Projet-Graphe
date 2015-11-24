@@ -33,7 +33,7 @@ public class Cycle {
             //Parcours
             while (pile.size() != 0) {
                 pointCourant = pile.pop();
-                Iterator<Point> it = pointCourant.getVoisins().iterator();
+                Iterator<Point> it = pointCourant.getVoisins().keySet().iterator();
                 while (it.hasNext()) {
                     pointVisite = it.next();
                     if (pointVisite.estNonAtteint()) {
@@ -72,9 +72,12 @@ public class Cycle {
             cpt = Integer.parseInt(p.getNom());
             if (cpt == last) {
                 g.addVoisin(first, g.getPoint(cpt));
+                graphe.placementArrete(graphe.getPoint(first), graphe.getPoint(cpt));
                 g.addVoisin(cpt, g.getPoint(Integer.parseInt(pOld.getNom())));
+                graphe.placementArrete(graphe.getPoint(cpt), graphe.getPoint(Integer.parseInt(pOld.getNom())));
             } else if (cpt != first) {
                 g.addVoisin(cpt, g.getPoint(Integer.parseInt(pOld.getNom())));
+                graphe.placementArrete(graphe.getPoint(cpt), graphe.getPoint(Integer.parseInt(pOld.getNom())));
             }
             pOld = p;
         }
@@ -113,7 +116,7 @@ public class Cycle {
             //Parcours
             while (pile.size() != 0) {
                 pointCourant = pile.pop();
-                Iterator<Point> it = pointCourant.getVoisins().iterator();
+                Iterator<Point> it = pointCourant.getVoisins().keySet().iterator();
                 while (it.hasNext()) {
                     pointVisite = it.next();
                     if (pointVisite.estNonAtteint()) {

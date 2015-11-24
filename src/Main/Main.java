@@ -49,6 +49,8 @@ public class Main {
             System.out.println("Graphe g2 après : \n" + g2);
             System.out.println("Face : " + g2.getFaces());
 
+            System.out.println("Graphe old : \n"+g);
+
         } catch (Exception e) {
             System.out.println("Pas de cycle lel");
         }
