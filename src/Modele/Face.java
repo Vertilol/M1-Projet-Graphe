@@ -1,7 +1,10 @@
 package Modele;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import Exception.*;
+import Utils.Parcours;
 
 /**
  * Created by Clement on 17/10/2015.
@@ -75,6 +78,8 @@ public class Face {
         faces[1] = f2;
         return faces;
     }
+
+
 
     public String toString(){
         String s = "[ "+ nom + " : [ ";

@@ -1,10 +1,10 @@
 package Main;
 
 import Modele.Face;
+import Modele.Fragment;
 import Modele.Graphe;
 import Modele.Point;
-import Utils.Cycle;
-
+import Utils.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,8 @@ public class Main {
             System.out.println(g2);
             //System.out.println(Cycle.chercherCycles(g));
             System.out.println("Voici les fragments");
-            System.out.println(Graphe.getFragments(g, g2));
+            List<ArrayList<Point>> fragments = Graphe.getFragments(g, g2);
+            System.out.println(fragments);
             //System.out.println(Cycle.chercherCycle(g));
             System.out.println();
             System.out.println("Compatibilité des fragments :");
@@ -47,12 +48,23 @@ public class Main {
 
             g2.plongerChemin(test, face1);
             System.out.println("Graphe g2 après : \n" + g2);
-            System.out.println("Face : " + g2.getFaces());
+            List<Face> listefaces = g2.getFaces();
+            System.out.println("Face : " + listefaces);
+
+            System.out.println("\n\n Chemins des fragments : ");
+            for(ArrayList<Point> fragment : fragments){
+                try {
+                    System.out.println("Pour le fragment " + fragment + " on trouve le chemin " + Fragment.getCheminFromFragment(fragment));
+                }
+                catch (Exception e){
+                    System.out.println("Exception pour le fragment " + fragment + " " + e.getMessage());
+                }
+            }
 
             System.out.println("Graphe old : \n"+g);
 
         } catch (Exception e) {
-            System.out.println("Pas de cycle lel");
+            System.out.println("Exception "+e.getMessage());
         }
     }
 
