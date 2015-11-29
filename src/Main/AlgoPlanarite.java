@@ -5,6 +5,7 @@ import Modele.Fragment;
 import Modele.Graphe;
 import Modele.Point;
 import Utils.Cycle;
+import Utils.Sortie;
 import Utils.Utilitaires;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class AlgoPlanarite {
                 gNew.plongerChemin(chemin, face);
             }
         } while (!fragments.isEmpty());
+        Sortie.todot(gNew);
         return true;
     }
 }
