@@ -203,6 +203,22 @@ public class Graphe {
             }
         }
 
+        //on recherche entre les point bleus si l'arete a été placé dans H
+        for(Point p1 : gOld.getPoints()){
+            if(p1.planariteBleu()){
+                for(Point p2 : p1.getVoisins().keySet()){
+                    if(p2.planariteBleu()){
+                        if(! p1.getVoisins().get(p2)){
+                            List<Point> entreBleu = new ArrayList<Point>();
+                            entreBleu.add(p1);
+                            entreBleu.add(p2);
+                            fragments.add((ArrayList<Point>)entreBleu);
+                        }
+                    }
+                }
+            }
+        }
+
         return fragments;
     }
 
@@ -260,6 +276,9 @@ public class Graphe {
             cpt = Integer.parseInt(p.getNom());
             if (cpt != first) {
                 this.addVoisin(cpt, this.getPoint(Integer.parseInt(pOld.getNom())));
+            }
+            if(pOld != null){
+                placementArrete(pOld,p);
             }
             pOld = p;
         }
