@@ -89,6 +89,12 @@ public class Point {
         return listeCycle;
     }
 
+
+    public boolean hasVoisinTrue(Point p){
+        return this.voisins.get(p);
+    }
+
+
     @Override
     public String toString() {
         return nom;
