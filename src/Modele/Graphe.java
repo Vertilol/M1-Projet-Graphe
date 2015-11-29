@@ -263,6 +263,7 @@ public class Graphe {
     public void plongerChemin(List<Point> listPoint, Face face) throws Exception {
         Point oldPoint = null;
         for (Point p : listPoint) {
+            p.setPlanariteBleu();
             if(!containsPointNom(p)){
                 this.addPoint(new Point(p.getNom()));
             }

@@ -25,6 +25,7 @@ public class Point {
     public Point(String nom) {
         this.nom = nom;
         voisins = new HashMap<Point, Boolean>();
+        planarite = PLANARITE.BLANC;
     }
 
     public Point() {

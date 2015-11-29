@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        boolean b = AlgoPlanarite.algoPlanarite("Exemples/exemple.graphe");
-        System.out.println(b);
+        System.out.print(AlgoPlanarite.algoPlanarite("Exemples/exemple.graphe"));
     }
 }
