@@ -156,7 +156,8 @@ public class Graphe {
     public static List<ArrayList<Point>> getFragments(Graphe gOld, Graphe gNew) {
         //on recupere les points du grapheOld qui ne sont pas dans gNew
         List<Point> listePoints = new ArrayList<Point>();
-        for (Point p : gOld.points) {
+        List<Point> oldPointsArray = gOld.getPoints();
+        for (Point p : oldPointsArray) {
             if (!gNew.containsPoint(p)) {
                 listePoints.add(gOld.getPoint(p.getNom()));
             }
