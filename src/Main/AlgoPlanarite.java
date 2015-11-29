@@ -24,11 +24,13 @@ public class AlgoPlanarite {
 
         Graphe g = Utils.Parseur.lectureFichierGraphe(fichier);
         Graphe gNew = Cycle.construireNouveauGraphe(g);
+        System.out.println("Init graphe : "+ gNew);
+
         do { //tant que g a des fragments
             fragments = Graphe.getFragments(g, gNew);
             maj = false;
             possibiliteFragments = gNew.placementFragment(fragments);
-
+            System.out.println("Possibilité init "+possibiliteFragments);
             for (ArrayList<Point> fragment : fragments) {
                 faces = possibiliteFragments.get(fragment);
                 if (!maj) {
@@ -42,10 +44,13 @@ public class AlgoPlanarite {
                     }
                 }
             }
-            if (!maj) {
+            if (!maj && !fragments.isEmpty()) {
                 ArrayList<Point> fragment = fragments.get(Utilitaires.random(0, fragments.size() - 1));
                 faces = possibiliteFragments.get(fragment);
                 Face face = faces.get(Utilitaires.random(0, faces.size() - 1));
+                System.out.println("Graphe \n" + gNew);
+                System.out.println("Fragments :  "+fragment);
+
                 chemin = Fragment.getCheminFromFragment(fragment);
                 gNew.plongerChemin(chemin, face);
             }
