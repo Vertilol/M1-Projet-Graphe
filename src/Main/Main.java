@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        //Graphe g = Utils.Parseur.lectureFichierGraphe(args[0]);
+        //Graphe g = Utilitaires.Parseur.lectureFichierGraphe(args[0]);
         //testClone();
         Graphe g = Utils.Parseur.lectureFichierGraphe("Exemples/exemple0.graphe");
         System.out.println(g);

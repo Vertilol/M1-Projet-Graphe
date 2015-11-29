@@ -30,7 +30,7 @@ public class Fragment {
         return findPathFragment(liste, source, destination);
     }
 
-    public static List<Point> findPathFragment(List<Point> array, Point source, Point destination) throws ExceptionNoPathFound {
+    private static List<Point> findPathFragment(List<Point> array, Point source, Point destination) throws ExceptionNoPathFound {
         ArrayList<Point> chemin = new ArrayList<Point>();
         Parcours.setVoisinNonAtteint(array);
         Stack<Point> stack = new Stack<Point>();
@@ -39,7 +39,7 @@ public class Fragment {
             Point current = stack.pop();
             for(Point voisin : current.getVoisins().keySet()){
                 if(voisin.estNonAtteint()) {
-                    //on veut au moins 1 points qui n'a pas la planarité bleue
+                    //on veut au moins 1 points qui n'a pas la planaritï¿½ bleue
                     if(!(destination==voisin && current==source)) {
                         stack.push(voisin);
                         voisin.setParent(current);
