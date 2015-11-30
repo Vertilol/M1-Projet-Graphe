@@ -5,6 +5,9 @@ import Modele.Fragment;
 import Modele.Graphe;
 import Modele.Point;
 import Utils.*;
+import Vues.Fenetre;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,6 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.print(AlgoPlanarite.algoPlanarite("Exemples/exemple.graphe"));
+        new Fenetre();
     }
 }

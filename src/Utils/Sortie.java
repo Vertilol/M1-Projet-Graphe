@@ -1,10 +1,9 @@
 package Utils;
 
+import Modele.Face;
 import Modele.Graphe;
 import Modele.Point;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -32,11 +31,19 @@ public class Sortie {
 
         s+= "}";
         try {
-            FileWriter fw = new FileWriter("lol.dot");
+            FileWriter fw = new FileWriter("solution.dot");
             fw.write(s);
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String faces(Graphe g){
+        String result = "";
+        for(Face f : g.getFaces()){
+            result += f.toString() + "\n";
+        }
+        return result;
     }
 }

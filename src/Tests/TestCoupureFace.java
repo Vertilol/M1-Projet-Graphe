@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Clement on 17/10/2015.
  */
-public class TestCoupureFace { // test commit
+public class TestCoupureFace {
     public static void main(String[] args){
         Point p1 = new Point("1");
         Point p2 = new Point("2");

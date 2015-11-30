@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Clement on 17/10/2015.
  */
-public class Test { // test commit
+public class Test {
     public static void main(String[] args){
         System.out.println(random(0, 1));
     }
