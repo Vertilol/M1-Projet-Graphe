@@ -39,18 +39,24 @@ public class Fenetre extends JFrame{
                 int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    Graphe g = AlgoPlanarite.algoPlanarite(selectedFile.toString());
+                    int pos = selectedFile.getName().lastIndexOf(".");
+                    String extention = selectedFile.getName().substring(pos + 1);
                     String result = "";
-                    if(g != null){
-                        result = "Le graphe est planaire.\n";
-                        Sortie.todot(g);
-                        result += "La liste des faces est : \n";
-                        result += Sortie.faces(g);
+
+                    if(extention.equals("graphe")) {
+                        Graphe g = AlgoPlanarite.algoPlanarite(selectedFile.toString());
+                        if (g != null) {
+                            result = "Le graphe est planaire.\n";
+                            Sortie.todot(g);
+                            result += "La liste des faces est : \n";
+                            result += Sortie.faces(g);
+                        } else {
+                            result = "Le graphe n'est pas planaire.";
+                        }
                     } else {
-                        result = "Le graphe n'est pas planaire.";
+                        result = "Le fichier n'est pas un .graphe";
                     }
                     JOptionPane.showMessageDialog(fenetre, result);
-
                 }
             }
         });
